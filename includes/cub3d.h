@@ -7,7 +7,14 @@
 typedef struct s_data
 {
     char **map;
-    
+
 }   t_data;
+
+// ---- FUNCTIONS ----
+
+// utils
+
+int check_ext(char *file);
+
 
 #endif

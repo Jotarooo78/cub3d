@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/20 15:28:12 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/20 16:27:19 by armosnie         ###   ########.fr       */
+/*   Created: 2025/09/20 16:19:11 by armosnie          #+#    #+#             */
+/*   Updated: 2025/09/20 16:27:09 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int main(int argc, char **argv)
+int check_ext(char *file)
 {
-    t_data *data;
-    
-    if (argc == 2 && !check_ext(argv[1]))
-    {
-        data = init_struct(&data);
-        parse(data);
-    }
-    return (0);
+	int	len;
+
+	len = ft_strlen(file);
+	if (len < 4)
+		return (1);
+	if (ft_strncmp(file + (len - 4), ".cub", 4) == 0)
+		return (0);
+	return (1);
 }

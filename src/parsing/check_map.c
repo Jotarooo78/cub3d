@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/20 15:28:12 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/20 16:27:19 by armosnie         ###   ########.fr       */
+/*   Created: 2025/09/20 16:27:44 by armosnie          #+#    #+#             */
+/*   Updated: 2025/09/20 16:32:19 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int main(int argc, char **argv)
+void    parse(t_data *data)
 {
-    t_data *data;
     
-    if (argc == 2 && !check_ext(argv[1]))
-    {
-        data = init_struct(&data);
-        parse(data);
-    }
-    return (0);
 }
