@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/20 16:27:44 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/22 14:28:03 by armosnie         ###   ########.fr       */
+/*   Created: 2025/09/22 14:58:53 by armosnie          #+#    #+#             */
+/*   Updated: 2025/09/22 15:07:47 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void    parse(t_data *data, char **argv)
+void    error(t_data *data, char *str)
 {
-    (void)argv;
+    perror(str);
     (void)data;
+    // free_data(data);
 }

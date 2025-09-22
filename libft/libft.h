@@ -6,12 +6,14 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 12:22:05 by messengu          #+#    #+#             */
-/*   Updated: 2025/07/28 16:17:50 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/22 14:54:49 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# define BUFFER_SIZE 1024
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -59,7 +61,16 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
+
+// GNL
+
+int					search_char(char *str, char c);
+size_t				ft_strlen_opti(char *str);
+char				*ft_strndup(char *str, char c);
+char				*get_next_line(int fd);
+
 // Bonus
+
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 int					ft_lstsize(t_list *lst);

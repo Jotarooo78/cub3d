@@ -16,9 +16,31 @@
 
 // ---- STRUCTS ----
 
+typedef struct s_color
+{
+	int		r;
+	int		g;
+	int		b;
+	int		rgb;
+
+}			t_color;
+
+typedef struct s_text
+{
+	char	*no;
+	char	*so;
+	char	*ea;
+	char	*we;
+	char	*fl;
+	char	*ce;
+
+}			t_text;
+
 typedef struct s_data
 {
 	char	**map;
+    t_color *color;
+    t_text  *text;
 
 }			t_data;
 
@@ -26,10 +48,11 @@ typedef struct s_data
 
 // check map
 
-void		parse(t_data *data, char **argv);
+void		parse(t_data *data, char *file);
 
 // utils
 
 int			check_ext(char *file);
+int			double_backslash(char *str);
 
 #endif
