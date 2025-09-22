@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:19:11 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/22 17:29:19 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/22 17:54:29 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,4 @@ int	double_backslash(char *str)
 		i++;
 	}
 	return (0);
-}
-
-char *ft_strdup_format(char *str)
-{
-	
 }

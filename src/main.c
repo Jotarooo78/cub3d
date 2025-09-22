@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 15:28:12 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/22 16:22:32 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/22 17:54:20 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int main(int argc, char **argv)
         data = init_data();
         if (!data)
             return (1);
-        parse(data, argv[1]);
+        // parse(data, argv[1]);
     }
     return (0);
 }
