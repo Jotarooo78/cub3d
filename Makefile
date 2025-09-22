@@ -1,9 +1,18 @@
 NAME = cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -MMD -g3
 LDFLAGS = -L./minilibx -L./libft
 LDLIBS = -lmlx -lm -lft
 RM = rm -f
+
+# Détection de l'OS pour MinilibX
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+	LDLIBS += -lXext -lX11
+endif
+ifeq ($(UNAME_S),Darwin)
+	LDLIBS += -framework OpenGL -framework AppKit
+endif
 
 SRCS = \
 	src/main.c \
@@ -22,7 +31,6 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MINILIBX)
 	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(NAME)
-
 
 $(LIBFT):
 	make -C libft

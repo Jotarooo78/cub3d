@@ -1,0 +1,7 @@
+PLAN :
+
+parsing/ : Parser le fichier .cub (textures, couleurs, carte)
+raycasting/ : Algorithme DDA et calculs de rayons
+graphics/ : Gestion de la fenêtre et rendu avec MinilibX
+player/ : Mouvements et rotation du joueur
+events/ : Gestion des événements clavier/souris

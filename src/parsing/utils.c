@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:19:11 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/20 16:27:09 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/22 14:27:42 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int check_ext(char *file)
 	len = ft_strlen(file);
 	if (len < 4)
 		return (1);
-	if (ft_strncmp(file + (len - 4), ".cub", 4) == 0)
+	if (ft_strncmp(&file[len - 4], ".cub", 4) == 0)
 		return (0);
 	return (1);
 }
