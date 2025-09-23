@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:19:11 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/22 17:29:19 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/23 16:35:58 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,15 @@ int check_ext(char *file)
 	return (1);
 }
 
-int	double_backslash(char *str)
+void	print_array(char **array)
 {
 	int i;
-
+	
 	i = 0;
-	while (str[i])
+	while (array[i])
 	{
-		if (str[i - 1] == '\n' && str[i] == '\n')
-			return (1);
+		printf("%s\n", array[i]);
 		i++;
 	}
-	return (0);
-}
-
-char *ft_strdup_format(char *str)
-{
-	
+	printf("\n");
 }

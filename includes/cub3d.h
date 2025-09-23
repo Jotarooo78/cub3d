@@ -39,8 +39,8 @@ typedef struct s_text
 typedef struct s_data
 {
 	char	**map;
-    t_color *color;
-    t_text  *text;
+	t_color	*color;
+	t_text	*text;
 
 }			t_data;
 
@@ -48,11 +48,16 @@ typedef struct s_data
 
 // check map
 
-void		parse(t_data *data, char *file);
+int			parse(t_data *data, char *file);
+
+// error
+
+void		free_array(char **array);
+void		error(t_data *data, char *str);
 
 // utils
 
 int			check_ext(char *file);
-int			double_backslash(char *str);
+void		print_array(char **array);
 
 #endif
