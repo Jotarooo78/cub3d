@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 15:28:12 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/23 15:50:45 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/24 14:53:10 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,17 @@ t_data *init_data(void)
     if (!data)
         return (NULL);
     data->map = NULL;
-    data->color = malloc(sizeof(t_color));
-    if (!data->color)
-        return (NULL);
     data->text = malloc(sizeof(t_text));
     if (!data->text)
+        return (NULL);
+    data->text->fl = malloc(sizeof(t_color));
+    data->text->ce = malloc(sizeof(t_color));
+    if (!data->text->fl || !data->text->ce)
         return (NULL);
     data->text->no = NULL;
     data->text->so = NULL;
     data->text->we = NULL;
     data->text->ea = NULL;
-    data->text->fl = NULL;
-    data->text->ce = NULL;
     return (data);
 }
 

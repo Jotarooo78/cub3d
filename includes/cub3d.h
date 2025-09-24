@@ -31,24 +31,30 @@ typedef struct s_text
 	char	*so;
 	char	*ea;
 	char	*we;
-	char	*fl;
-	char	*ce;
+	t_color	*fl;
+	t_color	*ce;
 
 }			t_text;
 
 typedef struct s_data
 {
 	char	**map;
-	t_color	*color;
 	t_text	*text;
 
 }			t_data;
 
 // ---- FUNCTIONS ----
 
-// check map
+// main
 
 int			parse(t_data *data, char *file);
+
+// check
+
+int			is_features_init_check(t_data *data);
+int			check_features(char **split);
+int			check_dup(t_data *data, int ret);
+int			init_features_data(t_data *data, char **split, int ret);
 
 // error
 

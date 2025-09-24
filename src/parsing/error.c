@@ -6,29 +6,51 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 14:58:53 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/23 14:44:25 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/24 14:00:18 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void    free_array(char **array)
+void	free_array(char **array)
 {
-    int i;
-    
-    i = 0;
-    while (array[i])
-    {
-        free(array[i]);
-        array[i] = NULL;
-        i++;
-    }
-    free(array);
+	int	i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		array[i] = NULL;
+		i++;
+	}
+	free(array);
 }
 
-void    error(t_data *data, char *str)
+void	free_struct_data(t_data *data)
 {
-    perror(str);
-    (void)data;
-    // free_data(data);
+    if (!data)
+        return ;
+    if (data->text->no)
+        free(data->text->no);
+    if (data->text->so)
+        free(data->text->so);
+    if (data->text->we)
+        free(data->text->we);
+    if (data->text->ea)
+        free(data->text->ea);
+    if (data->text->fl)
+        free(data->text->fl);
+    if (data->text->ce)
+        free(data->text->ce);
+    if (data->map)
+        free_array(data->map);
+}
+
+void error(t_data *data, char *str)
+{
+	perror(str);
+	free_struct_data(data);
+    free(data->color);
+    free(data->text);
+    free(data);
 }
