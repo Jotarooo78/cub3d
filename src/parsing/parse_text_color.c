@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:27:44 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/25 14:39:34 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/25 15:23:32 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	manage_features(t_data *data)
 		split = transform_array(data->map[i]);
 		if (!split)
 			return (1);
-		ret = check_features(split[0]);
+		ret = check_split_features(split[0]);
 		if (ret != 0)
 			if (init_features_data(data, split, ret) != 0)
 				return (free_array(split), 1);
@@ -101,6 +101,9 @@ char	*join_map(char *str, int fd)
 	return (tmp);
 }
 
+int	check_features_in_line()
+{}
+
 int	parse(t_data *data, char *file)
 {
 	int		fd;
@@ -114,7 +117,9 @@ int	parse(t_data *data, char *file)
 	join = join_map(str, fd);
 	if (join == NULL)
 		return (error(data, "invalid map format\n"), 1);
-	data->map = ft_split(join, '\n');
+	if (is_invalid_map(join))
+		return (error(data, "invalid map format\n"), 1);
+	data->map = dup_map(join, '\n');
 	free(join);
 	if (!data->map)
 		return (error(data, "map doesn't exist\n"), 1);

@@ -6,13 +6,13 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 14:11:56 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/25 13:56:28 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/25 15:00:41 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	is_features_init_check(t_data *data)
+int	is_features_init(t_data *data)
 {
 	int	count;
 
@@ -34,7 +34,7 @@ int	is_features_init_check(t_data *data)
 	return (1);
 }
 
-int	check_features(char *str)
+int	check_split_features(char *str)
 {
 	if (!ft_strcmp("NO", str))
 		return (1);
@@ -51,7 +51,7 @@ int	check_features(char *str)
 	return (0);
 }
 
-int	check_dup(t_data *data, int ret)
+int	is_dup_failed(t_data *data, int ret)
 {
 	if (ret == 1 && !data->text->no)
 		return (1);
@@ -109,7 +109,7 @@ int	init_features_data(t_data *data, char **split, int ret)
 	if (ret == 6)
 		if (init_color(data->text, split[1], ret))
 			return (1);
-	if (check_dup(data, ret) == 1)
+	if (is_dup_failed(data, ret) == 1)
 		return (1);
 	return (0);
 }

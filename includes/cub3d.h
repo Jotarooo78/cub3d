@@ -61,8 +61,8 @@ int			detect_features(char **map);
 
 // check
 
-int			is_features_init_check(t_data *data);
-int			check_features(char *str);
+int			is_features_init(t_data *data);
+int			check_split_features(char *str);
 int			check_dup(t_data *data, int ret);
 int			init_features_data(t_data *data, char **split, int ret);
 

@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 17:02:05 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/25 14:43:23 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/25 15:22:44 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	start_of_map(char **map)
 	return (-1);
 }
 
-char    **dup_map(t_data *data)
+char    **other_dup_map(t_data *data)
 {
     int start;
     int i;
@@ -115,7 +115,7 @@ int prep_flood_fill(t_data *data)
 {
     // char *fill_map;
     
-    data->map = dup_map(data);
+    data->map = other_dup_map(data);
     print_array(data->map);
     // fill_map = ft_strdup(data->map);
     // if (!fill_map)
