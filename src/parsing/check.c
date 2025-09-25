@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 14:11:56 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/24 16:20:24 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/25 13:56:28 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,19 @@ int	is_features_init_check(t_data *data)
 	return (1);
 }
 
-int	check_features(char **split)
+int	check_features(char *str)
 {
-	if (!ft_strcmp("NO", split[0]))
+	if (!ft_strcmp("NO", str))
 		return (1);
-	if (!ft_strcmp("SO", split[0]))
+	if (!ft_strcmp("SO", str))
 		return (2);
-	if (!ft_strcmp("WE", split[0]))
+	if (!ft_strcmp("WE", str))
 		return (3);
-	if (!ft_strcmp("EA", split[0]))
+	if (!ft_strcmp("EA", str))
 		return (4);
-	if (!ft_strcmp("F", split[0]))
+	if (!ft_strcmp("F", str))
 		return (5);
-	if (!ft_strcmp("C", split[0]))
+	if (!ft_strcmp("C", str))
 		return (6);
 	return (0);
 }

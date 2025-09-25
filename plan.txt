@@ -5,3 +5,14 @@ raycasting/ : Algorithme DDA et calculs de rayons
 graphics/ : Gestion de la fenêtre et rendu avec MinilibX
 player/ : Mouvements et rotation du joueur
 events/ : Gestion des événements clavier/souris
+
+
+flood fill : 
+
+// Approche suggérée :
+1. Parse la map et vérifie les caractères valides
+2. Trouve la position du joueur (un seul N/S/E/W autorisé)
+3. Remplace le caractère du joueur par '0'
+4. Lance un flood fill depuis cette position
+5. Si le flood fill atteint un bord de carte sans mur (1), 
+   la map n'est pas fermée → erreur

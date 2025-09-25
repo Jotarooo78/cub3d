@@ -6,47 +6,45 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 17:02:05 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/25 12:13:55 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/25 14:43:23 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int is_invalid_map(char **map)
-{
-    int i;
-    int j;
+// int is_invalid_map(char **map)
+// {
+//     int i;
+//     int map_started;
+//     char *trimmed;
     
-	i = detect_features(map) + 1;
-    while (map[i])
-    {
-        j = 0;
-        while (map[i][j])
-        {
-            if (map[i][j] == '1' && map[i][j + 1] == '1')
-                break ;
-            j++;
-        }
-        while (map[i][j] && map[i][j] == '1')
-            j++;
-        if (map[i][j] == '\n' && map[i + 1][0] == '\n')
-            return (printf("false\n"), 1);
-        i++;
-    }
-    return (printf("end\n"), 0);
-}
+//     map_started = 0;
+// 	i = detect_features(map) + 1;
+//     while (map[i])
+//     {
+//         trimmed = ft_strtrim(map[i], " \t");
+//         if (!trimmed)
+//             return (1);
+//         if (!map_started && trimmed[0] == '1')
+//             map_started = 1;
+//         if (map_started && trimmed[0] == '\0')
+//             return (printf("here\n"), 1);
+//         free(trimmed);
+//         i++;
+//     }
+//     return (0);
+// }
+
 
 int	start_of_map(char **map)
 {
 	int	i;
     char *trimmed;
 
-    i = detect_features(map) + 1;
-    if (is_invalid_map(map) == 1)
-        return (-1);
+    i = detect_features(map);
     while (map[i])
     {
-        trimmed = ft_strtrim(map[i], " \t\n");
+        trimmed = ft_strtrim(map[i], " \t");
         if (!trimmed)
             return (-1);
         if (trimmed[0] == '1' && trimmed[1] == '1')
@@ -83,8 +81,7 @@ char    **dup_map(t_data *data)
         i++;
     }
     new_map[len] = NULL;
-    free_array(data->map);
-    return (new_map);
+    return (free_array(data->map), new_map);
 }
 
 int	pos_depart(t_data *data)
@@ -93,7 +90,7 @@ int	pos_depart(t_data *data)
 	int j;
 	int stop;
 
-	i = detect_features(data->map);
+	i = start_of_map(data->map);
 	stop = 0;
 	while (data->map[i])
 	{
@@ -111,7 +108,6 @@ int	pos_depart(t_data *data)
             break ;
 		i++;
 	}
-	// printf("vertical : %d, horizontal : %d, char de depart : %c\n", i, j, data->map[i][j]);
     return (0);
 }
 
@@ -120,10 +116,10 @@ int prep_flood_fill(t_data *data)
     // char *fill_map;
     
     data->map = dup_map(data);
+    print_array(data->map);
     // fill_map = ft_strdup(data->map);
     // if (!fill_map)
     //     return (1);
-    print_array(data->map);
     return (0);
 }
 

@@ -53,6 +53,7 @@ int			parse(t_data *data, char *file);
 
 int			pos_depart(t_data *data);
 int			prep_flood_fill(t_data *data);
+int			start_of_map(char **map);
 
 // parse text color
 
@@ -61,7 +62,7 @@ int			detect_features(char **map);
 // check
 
 int			is_features_init_check(t_data *data);
-int			check_features(char **split);
+int			check_features(char *str);
 int			check_dup(t_data *data, int ret);
 int			init_features_data(t_data *data, char **split, int ret);
 

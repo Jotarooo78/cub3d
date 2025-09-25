@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:27:44 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/25 11:39:58 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/25 14:39:34 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,20 @@
 int	detect_features(char **map)
 {
 	int	i;
-	int	j;
 	int	count;
+	char *trimmed;
 
 	i = 0;
 	count = 0;
 	while (map[i])
 	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'W'
-				|| map[i][j] == 'E' || map[i][j] == 'F' || map[i][j] == 'C')
-				count++;
-			j++;
-		}
+		trimmed = ft_strtrim(map[i], " \t\n");
+		if (!trimmed)
+			return (-1);
+		if (trimmed[0] == 'N' || trimmed[0] == 'S' || trimmed[0] == 'W'
+				|| trimmed[0] == 'E' || trimmed[0] == 'F' || trimmed[0] == 'C')
+			count++;
+		free(trimmed);
 		i++;
 		if (count == 6)
 			return (i);
@@ -63,12 +62,12 @@ int	manage_features(t_data *data)
 	len = detect_features(data->map);
 	if (len == -1)
 		return (1);
-	while (i <= len)
+	while (i < len)
 	{
 		split = transform_array(data->map[i]);
 		if (!split)
 			return (1);
-		ret = check_features(split);
+		ret = check_features(split[0]);
 		if (ret != 0)
 			if (init_features_data(data, split, ret) != 0)
 				return (free_array(split), 1);

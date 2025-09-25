@@ -7,10 +7,11 @@ RM = rm -f
 
 SRCS = \
 	src/main.c \
-	src/parsing/parser.c \
+	src/parsing/parse_text_color.c \
+	src/parsing/parse_map.c \
 	src/parsing/utils.c \
 	src/parsing/error.c \
-
+	src/parsing/check.c \
 
 OBJ_DIR = obj
 DEP_DIR = $(OBJ_DIR)
