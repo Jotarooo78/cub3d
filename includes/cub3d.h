@@ -49,6 +49,15 @@ typedef struct s_data
 
 int			parse(t_data *data, char *file);
 
+// parse map
+
+int			pos_depart(t_data *data);
+int			prep_flood_fill(t_data *data);
+
+// parse text color
+
+int			detect_features(char **map);
+
 // check
 
 int			is_features_init_check(t_data *data);

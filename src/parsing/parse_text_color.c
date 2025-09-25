@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parse_text_color.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:27:44 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/24 16:21:06 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/25 11:39:58 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ int	parse(t_data *data, char *file)
 	if (!data->map)
 		return (error(data, "map doesn't exist\n"), 1);
 	if (manage_features(data))
+		return (1);
+	if (prep_flood_fill(data))
 		return (1); // pas oublier de free data->map
 	return (0);
 }
