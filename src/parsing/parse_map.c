@@ -6,35 +6,11 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 17:02:05 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/25 15:22:44 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/29 18:00:54 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// int is_invalid_map(char **map)
-// {
-//     int i;
-//     int map_started;
-//     char *trimmed;
-    
-//     map_started = 0;
-// 	i = detect_features(map) + 1;
-//     while (map[i])
-//     {
-//         trimmed = ft_strtrim(map[i], " \t");
-//         if (!trimmed)
-//             return (1);
-//         if (!map_started && trimmed[0] == '1')
-//             map_started = 1;
-//         if (map_started && trimmed[0] == '\0')
-//             return (printf("here\n"), 1);
-//         free(trimmed);
-//         i++;
-//     }
-//     return (0);
-// }
-
 
 int	start_of_map(char **map)
 {
@@ -55,7 +31,7 @@ int	start_of_map(char **map)
 	return (-1);
 }
 
-char    **other_dup_map(t_data *data)
+char    **dup_only_map(t_data *data)
 {
     int start;
     int i;
@@ -111,15 +87,49 @@ int	pos_depart(t_data *data)
     return (0);
 }
 
-int prep_flood_fill(t_data *data)
+char	**duplicate_map(char **map)
 {
-    // char *fill_map;
+	char	**dup_map;
+	int		i;
+    int len;
+
+    len = 0;
+    while (map[len])
+    {
+        len++;
+    }
+	dup_map = malloc(sizeof(char *) * (len + 1));
+	if (dup_map == NULL)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		dup_map[i] = ft_strdup(map[i]);
+		if (dup_map[i] == NULL)
+			return (free_array(dup_map), NULL);
+		i++;
+	}
+	dup_map[i] = NULL;
+	return (dup_map);
+}
+
+int parse_map(t_data *data)
+{
+    char **map_dup;
     
-    data->map = other_dup_map(data);
-    print_array(data->map);
-    // fill_map = ft_strdup(data->map);
-    // if (!fill_map)
-    //     return (1);
+    data->map = dup_only_map(data);
+    if (!data->map)
+        return (1);
+    if (is_valid_char_in_map(data->map))
+        return (1);
+    map_dup = duplicate_map(data->map);
+    if (!map_dup)
+        return (1);
+    flood_fill(map_dup, data);
+	if (check_after_fill(data, map_dup) == false)
+		return (free_array(map_dup), 1);
+	free_array(map_dup);
+    printf("\ngood\n");
     return (0);
 }
 

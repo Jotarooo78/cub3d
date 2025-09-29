@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:27:44 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/25 15:23:32 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/29 17:54:02 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**transform_array(char *line)
 	char	*formate_line;
 	char	**split;
 
-	formate_line = ft_strtrim(line, " \n\t");
+	formate_line = ft_strtrim(line, " \t\n");
 	if (!formate_line)
 		return (NULL);
 	split = ft_split(formate_line, ' ');
@@ -58,21 +58,24 @@ int	manage_features(t_data *data)
 	int		ret;
 	int		len;
 
-	i = 0;
+	i = -1;
 	len = detect_features(data->map);
 	if (len == -1)
 		return (1);
-	while (i < len)
+	while (++i < len)
 	{
 		split = transform_array(data->map[i]);
 		if (!split)
 			return (1);
-		ret = check_split_features(split[0]);
+		ret = check_features(split[0]);
 		if (ret != 0)
+		{
+			if (is_features_init(data, ret))
+				return (free_array(split), 1);
 			if (init_features_data(data, split, ret) != 0)
 				return (free_array(split), 1);
+		}
 		free_array(split);
-		i++;
 	}
 	return (0);
 }
@@ -101,8 +104,30 @@ char	*join_map(char *str, int fd)
 	return (tmp);
 }
 
-int	check_features_in_line()
-{}
+int	is_valid_map(char **map)
+{
+	int i;
+	int in_map;
+	char *trimmed;
+	
+	in_map = 0;
+	i = detect_features(map);
+	if (i == -1)
+		return (1);
+	while (map[i])
+	{
+		trimmed = ft_strtrim(map[i], " \t");
+		if (!trimmed)
+			return (1);
+		if (in_map == 0 && trimmed[0] == '1' && trimmed[1] == '1')
+			in_map = 1;
+		if (in_map == 1 && trimmed[0] == '\n')
+			return (free(trimmed), 1);
+		free(trimmed);
+		i++;
+	}
+	return (0);
+}
 
 int	parse(t_data *data, char *file)
 {
@@ -116,19 +141,19 @@ int	parse(t_data *data, char *file)
 	str = get_next_line(fd);
 	join = join_map(str, fd);
 	if (join == NULL)
+		return (error(data, "join error\n"), 1);
+	data->map = split_with_delimiter(join, '\n');
+	if (!data->map || is_valid_map(data->map))
 		return (error(data, "invalid map format\n"), 1);
-	if (is_invalid_map(join))
-		return (error(data, "invalid map format\n"), 1);
-	data->map = dup_map(join, '\n');
-	free(join);
+	free_array(data->map);
+	data->map = ft_split(join, '\n');
 	if (!data->map)
-		return (error(data, "map doesn't exist\n"), 1);
+		return (error(data, "split error\n"), 1);
+	free(join);
 	if (manage_features(data))
 		return (1);
-	if (prep_flood_fill(data))
-		return (1); // pas oublier de free data->map
+	if (parse_map(data))
+		return (1);
 	return (0);
 }
 
-// faire les bons messages erreurs
-// s'occuper des leaks

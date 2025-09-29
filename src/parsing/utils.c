@@ -6,13 +6,13 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:19:11 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/24 14:45:23 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/29 18:00:43 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int check_ext(char *file)
+int	check_ext(char *file)
 {
 	int	len;
 
@@ -26,8 +26,8 @@ int check_ext(char *file)
 
 void	print_array(char **array)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (array[i])
 	{
@@ -35,4 +35,38 @@ void	print_array(char **array)
 		i++;
 	}
 	printf("\n");
+}
+
+int	skip_whitespace(char c)
+{
+	if (c == ' ' || (c >= 9 && c <= 13))
+		return (1);
+	return (0);
+}
+
+int	is_valid_char_in_map(char **map)
+{
+	char **trimmed;
+	int i;
+	int j;
+
+	i = 0;
+	while (map[i])
+	{
+		trimmed = ft_strtrim(map[i], " \t\n");
+		if (!trimmed)
+			return (1);
+		j = 0;
+		while (trimmed[j])
+		{
+			if (trimmed[j] != '1' && trimmed[j] != '0' && trimmed[j] != 'N'
+				&& trimmed[j] != 'S' && trimmed[j] != 'W' && trimmed[j] != 'E'
+				&& trimmed[j] != ' ')
+				return (free(trimmed), 1);
+			j++;
+		}
+		free(trimmed);
+		i++;
+	}
+	return (0);
 }

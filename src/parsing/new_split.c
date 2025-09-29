@@ -5,73 +5,68 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/25 15:23:49 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/25 15:26:58 by armosnie         ###   ########.fr       */
+/*   Created: 2025/09/26 11:07:16 by armosnie          #+#    #+#             */
+/*   Updated: 2025/09/29 11:52:22 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "cub3d.h"
-
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "cub3d.h"
 
 int	count_words(char *s, char c)
 {
 	int	i;
 	int	count;
+	int is_delimiter;
 
 	i = 0;
 	count = 0;
 	while (s[i])
 	{
-		while (s[i] && s[i - 1] == c)
+		is_delimiter = 0;
+		if (s[i] && s[i] != c)
 			i++;
-		if (s[i] && s[i - 1] != c)
+		if (s[i] && s[i] == c)
 		{
+			is_delimiter = 1;
 			count++;
-			while (s[i] && s[i - 1] != c)
-				i++;
+			i++;	
 		}
 	}
+	if (is_delimiter == 0)
+		count++;
 	return (count);
 }
 
-char	*dup_word(const char *s, char c)
+char	*dup_with_delimiter(const char *s, char c)
 {
 	int		i;
 	char	*dup;
 
 	i = 0;
-	while (s[i] && s[i - 1] != c)
-		i++;
-	dup = malloc(sizeof(char) * (i + 1));
+	if (s[i] && s[i] != c)
+		while (s[i] && s[i] != c)
+			i++;
+	else
+		i = 1;
+	dup = malloc(sizeof(char) * (i + 2));
 	if (dup == NULL)
 		return (NULL);
 	i = 0;
-	while (s[i] && s[i - 1] != c)
+	while (s[i] && s[i] != c)
 	{
 		dup[i] = s[i];
+		i++;
+	}
+	if (s[i] == c)
+	{
+		dup[i] = '\n';
 		i++;
 	}
 	dup[i] = '\0';
 	return (dup);
 }
 
-static void	free_all(char **split)
-{
-	int	j;
-
-	j = 0;
-	while (split[j])
-	{
-		free(split[j]);
-		j++;
-	}
-	free(split);
-}
-
-char	**ft_split(const char *s, char c)
+char	**split_with_delimiter(const char *s, char c)
 {
 	char	**split;
 	int		j;
@@ -84,38 +79,14 @@ char	**ft_split(const char *s, char c)
 		return (NULL);
 	while (s[i])
 	{
-		while (s[i] && s[i] == c)
+		split[j] = dup_with_delimiter(&s[i], c);
+		if (split[j++] == NULL)
+			return (free_array(split), NULL);
+		while (s[i] && s[i] != c)
+        	i++;
+		if (s[i] == c)
 			i++;
-		if (s[i] && s[i] != c)
-		{
-			split[j] = dup_word(&s[i], c);
-			if (split[j++] == NULL)
-				return (free_all(split), NULL);
-			while (s[i] && s[i] != c)
-				i++;
-		}
-		else
-			break ;
 	}
-	return (split[j] = NULL, split);
-}
-
-int	main(int ac, char **av)
-{
-	int		j;
-	char	**res;
-
-	(void)ac;
-	j = 0;
-	res = ft_split((char *)av[1], ' ');
-	if (ac == 2)
-	{
-		while (res[j])
-		{
-			printf("%s", res[j]);
-			j++;
-		}
-	}
-	free_all(res);
-	return (0);
+	split[j] = NULL;
+	return (split);
 }

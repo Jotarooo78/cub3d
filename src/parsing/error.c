@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 14:58:53 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/24 14:00:18 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/26 14:32:10 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void error(t_data *data, char *str)
 {
 	perror(str);
 	free_struct_data(data);
-    free(data->color);
     free(data->text);
     free(data);
 }
