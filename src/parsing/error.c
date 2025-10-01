@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 14:58:53 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/26 14:32:10 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/01 17:52:10 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,13 @@ void	free_struct_data(t_data *data)
         free(data->text->ce);
     if (data->map)
         free_array(data->map);
+}
+
+void    free_everything(t_data *data)
+{
+    free_struct_data(data);
+    free(data->text);
+    free(data);
 }
 
 void error(t_data *data, char *str)

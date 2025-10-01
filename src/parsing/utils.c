@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:19:11 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/30 16:36:51 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:21:06 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,3 +80,8 @@ int	is_valid_char_in_map(char **map)
 	}
 	return (0);
 }
+
+	// void	print_info(t_data *data)
+	// {
+	// 	printf("player y : %d - player x : %d");
+	// }

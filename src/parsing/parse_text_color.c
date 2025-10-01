@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:27:44 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/29 17:54:02 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:39:19 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int	manage_features(t_data *data)
 		ret = check_features(split[0]);
 		if (ret != 0)
 		{
+			print_array(split);
 			if (is_features_init(data, ret))
 				return (free_array(split), 1);
 			if (init_features_data(data, split, ret) != 0)
@@ -102,31 +103,6 @@ char	*join_map(char *str, int fd)
 	}
 	close(fd);
 	return (tmp);
-}
-
-int	is_valid_map(char **map)
-{
-	int i;
-	int in_map;
-	char *trimmed;
-	
-	in_map = 0;
-	i = detect_features(map);
-	if (i == -1)
-		return (1);
-	while (map[i])
-	{
-		trimmed = ft_strtrim(map[i], " \t");
-		if (!trimmed)
-			return (1);
-		if (in_map == 0 && trimmed[0] == '1' && trimmed[1] == '1')
-			in_map = 1;
-		if (in_map == 1 && trimmed[0] == '\n')
-			return (free(trimmed), 1);
-		free(trimmed);
-		i++;
-	}
-	return (0);
 }
 
 int	parse(t_data *data, char *file)

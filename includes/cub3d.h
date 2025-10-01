@@ -24,6 +24,11 @@ typedef struct s_color
 
 }			t_color;
 
+/**
+ * @brief Holding data for directions.
+ * @param no North
+ * @param s
+ */
 typedef struct s_text
 {
 	char	*no;
@@ -37,6 +42,8 @@ typedef struct s_text
 
 typedef struct s_data
 {
+	void	*mlx;
+	void	*win;
 	char	**map;
 	int		p_x;
 	int		p_y;
@@ -53,9 +60,10 @@ int			parse(t_data *data, char *file);
 
 // parse map
 
-int			pos_depart(t_data *data);
 int			parse_map(t_data *data);
 int			start_of_map(char **map);
+int			is_valid_map(char **map);
+int			player_position(t_data *data);
 
 // parse text color
 
@@ -72,6 +80,7 @@ int			init_features_data(t_data *data, char **split, int ret);
 
 void		free_array(char **array);
 void		error(t_data *data, char *str);
+void		free_everything(t_data *data);
 
 // utils
 

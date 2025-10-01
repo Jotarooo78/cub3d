@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 17:02:05 by armosnie          #+#    #+#             */
-/*   Updated: 2025/10/01 14:40:08 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:37:54 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,37 +60,6 @@ char	**dup_only_map(t_data *data)
 	return (free_array(data->map), new_map);
 }
 
-int	player_position(t_data *data)
-{
-	int	i;
-	int	j;
-	int	has_a_player;
-
-	i = -1;
-	has_a_player = 0;
-	while (data->map[++i])
-	{
-		j = -1;
-		while (data->map[i][++j])
-		{
-			if (has_a_player == 1 && (data->map[i][j] == 'N'
-					|| data->map[i][j] == 'S' || data->map[i][j] == 'W'
-					|| data->map[i][j] == 'E'))
-				return (1);
-			if (has_a_player == 0 && (data->map[i][j] == 'N'
-					|| data->map[i][j] == 'S' || data->map[i][j] == 'W'
-					|| data->map[i][j] == 'E'))
-			{
-				data->p_x = j;
-				has_a_player = 1;
-			}
-		}
-		if (has_a_player == 1)
-			data->p_y = i;
-	}
-	return (0);
-}
-
 int	is_different_content(char **map, int i, int j)
 {
 	if (map[i][j] == '0')
@@ -119,16 +88,16 @@ int	check_wall(char **map)
 {
 	int	i;
 	int	j;
+    int len;
 
-	i = 1;
-	while (map[i])
+	i = 0;
+    len = count_map(map);
+	while (map[i] && i < len)
 	{
 		j = 1;
-        if (map[count_map(map)][j])
-			i++;
 		while (skip_whitespace(map[i][j]))
 			j++;
-		while (map[i][j] && map[i][j + 1])
+		while (map[i][j])
 		{
 			if (is_different_content(map, i, j))
                 return (1);
@@ -149,7 +118,7 @@ int	parse_map(t_data *data)
 	if (player_position(data))
 		return (1);
 	if (check_wall(data->map))
-		return (printf("bad\n"), 1);
+		return (1);
 	printf("good\n");
 	return (0);
 }
