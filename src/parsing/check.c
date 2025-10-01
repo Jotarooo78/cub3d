@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 14:11:56 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/29 16:49:39 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/30 16:10:03 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int	init_color(t_text *text, char *path, int ret)
 		text->fl->r = ft_atoi(split_path[0]);
 		text->fl->g = ft_atoi(split_path[1]);
 		text->fl->b = ft_atoi(split_path[2]);
-		text->fl->rgb = text->fl->r + text->fl->g + text->fl->b;
 		if (text->fl->r > 255 || text->fl->g > 255 || text->fl->b > 255)
 			return (printf("Error\nColor value must be between 0 and 255\n"),
 				1);
@@ -87,7 +86,6 @@ int	init_color(t_text *text, char *path, int ret)
 		text->ce->r = ft_atoi(split_path[0]);
 		text->ce->g = ft_atoi(split_path[1]);
 		text->ce->b = ft_atoi(split_path[2]);
-		text->ce->rgb = text->ce->r + text->ce->g + text->ce->b;
 		if (text->ce->r > 255 || text->ce->g > 255 || text->ce->b > 255)
 			return (printf("Error\nColor value must be between 0 and 255\n"),
 				1);

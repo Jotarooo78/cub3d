@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 15:28:12 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/24 14:53:10 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/01 14:40:48 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ t_data *init_data(void)
     data->text->so = NULL;
     data->text->we = NULL;
     data->text->ea = NULL;
+    data->p_x = 0;
+    data->p_y = 0;
+    data->player = 'X';
     return (data);
 }
 

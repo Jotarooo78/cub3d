@@ -21,7 +21,6 @@ typedef struct s_color
 	int		r;
 	int		g;
 	int		b;
-	int		rgb;
 
 }			t_color;
 
@@ -39,6 +38,9 @@ typedef struct s_text
 typedef struct s_data
 {
 	char	**map;
+	int		p_x;
+	int		p_y;
+	char	player;
 	t_text	*text;
 
 }			t_data;
@@ -76,6 +78,8 @@ void		error(t_data *data, char *str);
 int			check_ext(char *file);
 void		print_array(char **array);
 int			skip_whitespace(char c);
+int			is_valid_char_in_map(char **map);
+int			count_map(char **map);
 
 // utils : split with delimiter
 

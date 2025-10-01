@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:19:11 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/29 18:00:43 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/09/30 16:36:51 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,19 @@ int	skip_whitespace(char c)
 	return (0);
 }
 
+int	count_map(char **map)
+{
+	int i;
+	
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
+
 int	is_valid_char_in_map(char **map)
 {
-	char **trimmed;
+	char *trimmed;
 	int i;
 	int j;
 
