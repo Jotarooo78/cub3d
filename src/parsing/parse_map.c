@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 17:02:05 by armosnie          #+#    #+#             */
-/*   Updated: 2025/10/01 18:37:54 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/01 19:04:13 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ int	parse_map(t_data *data)
 		return (1);
 	if (check_wall(data->map))
 		return (1);
-	printf("good\n");
 	return (0);
 }
 

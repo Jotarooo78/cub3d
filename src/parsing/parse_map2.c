@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:06:28 by armosnie          #+#    #+#             */
-/*   Updated: 2025/10/01 18:20:14 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/01 19:03:30 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	is_valid_map(char **map)
 {
-	int i;
-	int in_map;
-	char *trimmed;
-	
+	int		i;
+	int		in_map;
+	char	*trimmed;
+
 	in_map = 0;
 	i = detect_features(map);
 	if (i == -1)
@@ -40,27 +40,28 @@ int	is_valid_map(char **map)
 int	which_side(t_data *data, char c, int has_a_player)
 {
 	if (has_a_player == 1 && (c == 'N' || c == 'S' || c == 'W' || c == 'E'))
-        return (1);
-	else if (has_a_player == 0)
-    {
-        if (c == 'N')
-            data->player = 'N';
-        if (c == 'S')
-            data->player = 'S';
-        if (c == 'W')
-            data->player = 'W';
-        if (c == 'E')
-            data->player = 'E';
-        return (2);
-    }
-    return (0);
+		return (1);
+	else if (has_a_player == 0 && (c == 'N' || c == 'S' || c == 'W'
+			|| c == 'E'))
+	{
+		if (c == 'N')
+			data->player = 'N';
+		if (c == 'S')
+			data->player = 'S';
+		if (c == 'W')
+			data->player = 'W';
+		if (c == 'E')
+			data->player = 'E';
+		return (2);
+	}
+	return (0);
 }
 
 int	player_position(t_data *data)
 {
-	int i;
-	int j;
-	int has_a_player;
+	int	i;
+	int	j;
+	int	has_a_player;
 
 	i = -1;
 	has_a_player = 0;
@@ -74,11 +75,12 @@ int	player_position(t_data *data)
 			if (which_side(data, data->map[i][j], has_a_player) == 2)
 			{
 				data->p_x = j;
+				data->p_y = i;
 				has_a_player = 1;
 			}
 		}
-		if (has_a_player == 1)
-			data->p_y = i;
 	}
+	if (has_a_player == 0)
+		return (1);
 	return (0);
 }

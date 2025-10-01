@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:27:44 by armosnie          #+#    #+#             */
-/*   Updated: 2025/10/01 18:39:19 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:54:45 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	manage_features(t_data *data)
 		ret = check_features(split[0]);
 		if (ret != 0)
 		{
-			print_array(split);
 			if (is_features_init(data, ret))
 				return (free_array(split), 1);
 			if (init_features_data(data, split, ret) != 0)
