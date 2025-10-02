@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:22:36 by armosnie          #+#    #+#             */
-/*   Updated: 2025/10/02 14:26:49 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/02 15:05:53 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,11 @@ void    get_map_x_y(t_data *data)
 char	*strdup_with_longest_line(t_data *data, char *s1)
 {
 	int		i;
+    int     len;
 	char	*dup;
 
-	i = longest_line(data->map);
-	dup = (char *)malloc(sizeof(char) * i + 1);
+	len = longest_line(data->map);
+	dup = (char *)malloc(sizeof(char) * len + 1);
 	if (!dup)
 		return (NULL);
 	i = 0;
@@ -65,6 +66,10 @@ char	*strdup_with_longest_line(t_data *data, char *s1)
 		dup[i] = s1[i];
 		i++;
 	}
-	dup[i] = '\0';
+    while (i < len)
+    {
+	    dup[i] = '\0';
+        i++;
+    }
 	return (dup);
 }
