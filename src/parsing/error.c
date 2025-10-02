@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 14:58:53 by armosnie          #+#    #+#             */
-/*   Updated: 2025/10/01 17:52:10 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/02 11:51:10 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,14 @@ void    free_everything(t_data *data)
 void error(t_data *data, char *str)
 {
 	perror(str);
+	free_struct_data(data);
+    free(data->text);
+    free(data);
+}
+
+void error_2(t_data *data, char *str)
+{
+	ft_putstr_fd(str, 2);
 	free_struct_data(data);
     free(data->text);
     free(data);

@@ -80,7 +80,13 @@ int			init_features_data(t_data *data, char **split, int ret);
 
 void		free_array(char **array);
 void		error(t_data *data, char *str);
+void		error_2(t_data *data, char *str);
 void		free_everything(t_data *data);
+
+// utils : split with delimiter
+
+char		**split_with_delimiter(const char *s, char c);
+char		**split_with_longest_line(t_data *data, const char *s, char c);
 
 // utils
 
@@ -89,9 +95,7 @@ void		print_array(char **array);
 int			skip_whitespace(char c);
 int			is_valid_char_in_map(char **map);
 int			count_map(char **map);
+int			longest_line(char **map);
 
-// utils : split with delimiter
-
-char		**split_with_delimiter(const char *s, char c);
 
 #endif

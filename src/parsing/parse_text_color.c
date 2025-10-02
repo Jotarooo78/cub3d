@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 16:27:44 by armosnie          #+#    #+#             */
-/*   Updated: 2025/10/01 18:54:45 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/02 11:58:39 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,19 +116,20 @@ int	parse(t_data *data, char *file)
 	str = get_next_line(fd);
 	join = join_map(str, fd);
 	if (join == NULL)
-		return (error(data, "join error\n"), 1);
+		return (error_2(data, "join error\n"), 1);
 	data->map = split_with_delimiter(join, '\n');
 	if (!data->map || is_valid_map(data->map))
-		return (error(data, "invalid map format\n"), 1);
+		return (error_2(data, "invalid map format\n"), 1);
 	free_array(data->map);
 	data->map = ft_split(join, '\n');
 	if (!data->map)
-		return (error(data, "split error\n"), 1);
+		return (error_2(data, "split error\n"), 1);
 	free(join);
 	if (manage_features(data))
-		return (1);
+		return (error_2(data, "invalid features\n"), 1);
 	if (parse_map(data))
 		return (1);
+	
 	return (0);
 }
 

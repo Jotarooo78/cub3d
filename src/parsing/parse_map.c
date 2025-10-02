@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 17:02:05 by armosnie          #+#    #+#             */
-/*   Updated: 2025/10/01 19:04:13 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/02 12:40:36 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,17 +108,40 @@ int	check_wall(char **map)
 	return (0);
 }
 
+void	transform_space_into_1(t_data *data)
+{
+	int i;
+	int j;
+	int len;
+
+	len = longest_line(data->map);
+	i = 0;
+	while (data->map[i])
+	{
+		j = 0;
+		while (j < len)
+		{
+			if (data->map[i][j] == ' ' || data->map[i][j] == '\0')
+				data->map[i][j] = '1';
+			j++;
+		}
+		i++;
+	}
+}
+
 int	parse_map(t_data *data)
 {
 	data->map = dup_only_map(data);
 	if (!data->map)
-		return (1);
+		return (error_2(data, "dup error\n"), 1);
 	if (is_valid_char_in_map(data->map))
-		return (1);
+		return (error_2(data, "invalid character in map\n"), 1);
 	if (player_position(data))
-		return (1);
+		return (error_2(data, "0 or more than 1 player\n"), 1);
 	if (check_wall(data->map))
-		return (1);
+		return (error_2(data, "invalid map format\n"), 1);
+	transform_space_into_1(data);
+	print_array(data->map);
 	return (0);
 }
 

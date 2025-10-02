@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_split.c                                        :+:      :+:    :+:   */
+/*   split_with_delimiter.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 11:07:16 by armosnie          #+#    #+#             */
-/*   Updated: 2025/09/29 11:52:22 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/02 12:33:18 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	count_words(char *s, char c)
+static int	count_words(char *s, char c)
 {
 	int	i;
 	int	count;
