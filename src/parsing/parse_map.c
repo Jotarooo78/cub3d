@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 17:02:05 by armosnie          #+#    #+#             */
-/*   Updated: 2025/10/02 12:40:36 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/02 14:02:22 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	**dup_only_map(t_data *data)
 		return (NULL);
 	while (data->map[start + len])
 		len++;
-	new_map = malloc(sizeof(char *) * (len + 1));
+	new_map = malloc(sizeof(char *) * (longest_line(data->map) + 1));
 	if (!new_map)
 		return (NULL);
 	i = 0;
@@ -141,6 +141,10 @@ int	parse_map(t_data *data)
 	if (check_wall(data->map))
 		return (error_2(data, "invalid map format\n"), 1);
 	transform_space_into_1(data);
+	get_map_x_y(data);
+	// printf("map y : %d - map x : %d - player y : %d - player x : %d - player side : %c\n", data->map_y, data->map_x, data->p_y, data->p_x, data->player);
+	// printf("NO : %s ; SO : %s ; WE : %s ; EA : %s\n", data->text->no, data->text->so, data->text->we, data->text->ea);
+	// printf("fl-> r : %d - g : %d - b : %d\nce-> r : %d - g : %d - b : %d\n", data->text->fl->r, data->text->fl->g, data->text->fl->b, data->text->ce->r, data->text->ce->g, data->text->ce->b);
 	print_array(data->map);
 	return (0);
 }

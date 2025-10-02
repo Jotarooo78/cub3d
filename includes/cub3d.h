@@ -45,6 +45,8 @@ typedef struct s_data
 	void	*mlx;
 	void	*win;
 	char	**map;
+	int		map_y;
+	int		map_x;
 	int		p_x;
 	int		p_y;
 	char	player;
@@ -86,7 +88,6 @@ void		free_everything(t_data *data);
 // utils : split with delimiter
 
 char		**split_with_delimiter(const char *s, char c);
-char		**split_with_longest_line(t_data *data, const char *s, char c);
 
 // utils
 
@@ -96,6 +97,6 @@ int			skip_whitespace(char c);
 int			is_valid_char_in_map(char **map);
 int			count_map(char **map);
 int			longest_line(char **map);
-
+void		get_map_x_y(t_data *data);
 
 #endif

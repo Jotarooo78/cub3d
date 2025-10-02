@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 14:11:56 by armosnie          #+#    #+#             */
-/*   Updated: 2025/10/01 17:57:40 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/02 13:41:06 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	is_features_init(t_data *data, int ret)
 {
+	if (!data || !data->text)
+		return (0);
 	if (ret == 1 && data->text->no)
 		return (1);
 	else if (ret == 2 && data->text->so)
