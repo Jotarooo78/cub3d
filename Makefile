@@ -2,15 +2,19 @@ NAME = cub3D
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 LDFLAGS = -L./libx -L./libft
-LDLIBS = -lmlx -lm -lft
+LDLIBS = -lmlx -lXext -lX11 -lm -lft
 RM = rm -f
 
 SRCS = \
 	src/main.c \
-	src/parsing/parser.c \
+	src/parsing/parse_text_color.c \
+	src/parsing/parse_map.c \
 	src/parsing/utils.c \
+	src/parsing/utils2.c \
 	src/parsing/error.c \
-
+	src/parsing/check.c \
+	src/parsing/split_with_delimiter.c \
+	src/parsing/parse_map2.c \
 
 OBJ_DIR = obj
 DEP_DIR = $(OBJ_DIR)
