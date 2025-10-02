@@ -98,5 +98,6 @@ int			is_valid_char_in_map(char **map);
 int			count_map(char **map);
 int			longest_line(char **map);
 void		get_map_x_y(t_data *data);
+char		*strdup_with_longest_line(t_data *data, char *s1);
 
 #endif

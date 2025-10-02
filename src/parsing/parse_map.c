@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 17:02:05 by armosnie          #+#    #+#             */
-/*   Updated: 2025/10/02 14:02:22 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/02 14:27:50 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ char	**dup_only_map(t_data *data)
 		return (NULL);
 	while (data->map[start + len])
 		len++;
-	new_map = malloc(sizeof(char *) * (longest_line(data->map) + 1));
+	new_map = malloc(sizeof(char *) * (len + 1));
 	if (!new_map)
 		return (NULL);
 	i = 0;
 	while (i < len)
 	{
-		new_map[i] = ft_strdup(data->map[start + i]);
+		new_map[i] = strdup_with_longest_line(data, data->map[start + i]);
 		if (!new_map[i])
 			return (free_array(new_map), NULL);
 		i++;

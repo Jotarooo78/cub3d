@@ -16,3 +16,13 @@ flood fill :
 4. Lance un flood fill depuis cette position
 5. Si le flood fill atteint un bord de carte sans mur (1), 
    la map n'est pas fermée → erreur
+
+
+parcing :
+
+check double init
+caractere invalid
+faire les bons messages erreurs
+s'occuper des leaks
+revoir les codes erreurs de sorti
+check l'extension des xpm

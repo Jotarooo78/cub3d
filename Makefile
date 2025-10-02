@@ -10,8 +10,11 @@ SRCS = \
 	src/parsing/parse_text_color.c \
 	src/parsing/parse_map.c \
 	src/parsing/utils.c \
+	src/parsing/utils2.c \
 	src/parsing/error.c \
 	src/parsing/check.c \
+	src/parsing/split_with_delimiter.c \
+	src/parsing/parse_map2.c \
 
 OBJ_DIR = obj
 DEP_DIR = $(OBJ_DIR)
