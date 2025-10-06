@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 15:28:12 by armosnie          #+#    #+#             */
-/*   Updated: 2025/10/02 15:38:14 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/06 11:52:33 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int main(int argc, char **argv)
     t_data *data;
     
     data = NULL;
-    if (argv[1] == NULL || (argc == 2 && !check_ext(argv[1])))
+    if (argv[1] == NULL || (argc == 2 && !check_ext(argv[1], ".cub")))
     {
         data = init_data();
         if (!data)

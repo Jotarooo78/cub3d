@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 14:11:56 by armosnie          #+#    #+#             */
-/*   Updated: 2025/10/02 13:41:06 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/10/06 11:58:21 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,17 @@ int	init_color(t_text *text, char *path, int ret)
 int	init_features_data(t_data *data, char **split, int ret)
 {
 	if (ret == 1)
-		data->text->no = ft_strdup(split[1]);
+		if (!check_ext(split[1], ".xpm"))
+			data->text->no = ft_strdup(split[1]);
 	if (ret == 2)
-		data->text->so = ft_strdup(split[1]);
+		if (!check_ext(split[1], ".xpm"))
+			data->text->so = ft_strdup(split[1]);
 	if (ret == 3)
-		data->text->we = ft_strdup(split[1]);
+		if (!check_ext(split[1], ".xpm"))
+			data->text->we = ft_strdup(split[1]);
 	if (ret == 4)
-		data->text->ea = ft_strdup(split[1]);
+		if (!check_ext(split[1], ".xpm"))
+			data->text->ea = ft_strdup(split[1]);
 	if (ret == 5)
 		if (init_color(data->text, split[1], ret))
 			return (1);

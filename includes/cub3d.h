@@ -91,7 +91,7 @@ char		**split_with_delimiter(const char *s, char c);
 
 // utils
 
-int			check_ext(char *file);
+int			check_ext(char *file, char *ext);
 void		print_array(char **array);
 int			skip_whitespace(char c);
 int			is_valid_char_in_map(char **map);
